@@ -18,11 +18,12 @@ jobs:
       - run: npm ci        # or pnpm install / yarn install
       - run: npm run build # creates ./dist
 
-      # ○ Push the dist folder into the same branch (works for user sites)
+      # ○ Push the dist folder into a dedicated gh-pages branch
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: main          # because user sites read from / (root)
+          publish_branch: gh-pages          # because user sites read from / (root)
           publish_dir: ./dist
-          keep_files: true              # keep source files alongside the build
+          keep_files: false                 # gh-pages only holds build output
+          force_orphan: true                # create a fresh gh-pages branch

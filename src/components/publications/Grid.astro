@@ -1,6 +1,16 @@
 ---
-export interface Props { items: {data: Record<string, unknown>;}[]; }
-const { items = [] } = Astro.props;
+import type { CollectionEntry } from 'astro:content';
+
+// 1. Pull in the exact schema for your "publications" collection:
+type PubEntry = CollectionEntry<'publications'>;
+
+// 2. Define Props so that `items` is an array of those entries:
+export interface Props {
+  items: PubEntry[];
+}
+
+// 3. Cast Astro.props so TS knows each `item.data.xxx` is the right type.
+const { items = [] } = Astro.props as Props;
 ---
 
 <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">

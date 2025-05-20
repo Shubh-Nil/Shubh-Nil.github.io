@@ -31,29 +31,19 @@ const {
 const pubs = await findLatestPublications({ count });
 ---
 
-<WidgetWrapper
-  id={id}
-  isDark={isDark}
-  containerClass={classes?.container as string | undefined}
->
+<WidgetWrapper id={id} isDark={isDark} containerClass={classes?.container as string | undefined}>
   <div class="flex flex-col lg:justify-between lg:flex-row mb-8">
-    {title && (
-      <div class="md:max-w-sm">
-        <h2
-          class="text-3xl font-bold tracking-tight sm:text-4xl group font-heading mb-2"
-          set:html={title}
-        />
-        <Button variant="link" href={linkUrl}>
-          {linkText} »
-        </Button>
-      </div>
-    )}
-    {information && (
-      <p
-        class="text-muted dark:text-slate-400 lg:text-sm lg:max-w-md"
-        set:html={information}
-      />
-    )}
+    {
+      title && (
+        <div class="md:max-w-sm">
+          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl group font-heading mb-2" set:html={title} />
+          <Button variant="link" href={linkUrl}>
+            {linkText} »
+          </Button>
+        </div>
+      )
+    }
+    {information && <p class="text-muted dark:text-slate-400 lg:text-sm lg:max-w-md" set:html={information} />}
   </div>
 
   <Grid items={pubs} />

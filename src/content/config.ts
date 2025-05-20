@@ -71,9 +71,9 @@ const publicationsCollection = defineCollection({
     /* minimal fields we need for the widget */
     title: z.string(),
     description: z.string(),
-    date: z.date(),                     // for sorting in the widget
-    thumbnail: z.string(),              // PNG / JPG path
-    externalUrl: z.string().url(),      // where the card should link
+    date: z.date(), // for sorting in the widget
+    thumbnail: z.string(), // PNG / JPG path
+    externalUrl: z.string().url(), // where the card should link
 
     draft: z.boolean().optional(),
 

@@ -2,7 +2,6 @@
 import Grid from '~/components/publications/Grid.astro';  // new grid (next step)
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import Button from '~/components/ui/Button.astro';
-import { getCollection } from 'astro:content';
 import { findLatestPublications } from '~/utils/publications';
 
 export interface Props {
@@ -14,7 +13,7 @@ export interface Props {
   id?: string;
   isDark?: boolean;
   classes?: Record<string, unknown>;
-  bg?: any;
+  bg?: unknown;
 }
 
 const {
@@ -32,7 +31,7 @@ const {
 const pubs = await findLatestPublications({ count });
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={classes?.container as string | undefined} bg={bg}>
+<WidgetWrapper id={id} isDark={isDark} containerClass={classes?.container as string | undefined} bg={bg as unknown}>
   <div class="flex flex-col lg:justify-between lg:flex-row mb-8">
     {title && (
       <div class="md:max-w-sm">

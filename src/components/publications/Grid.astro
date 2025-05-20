@@ -1,5 +1,5 @@
 ---
-export interface Props { items: any[] }
+export interface Props { items: {data: Record<string, unknown>;}[]; }
 const { items = [] } = Astro.props;
 ---
 

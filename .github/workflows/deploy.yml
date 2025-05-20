@@ -2,7 +2,13 @@ name: Deploy Astro site to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+
+permissions:
+  contents: read        # for checkout
+  pages: write          # to deploy Pages
+  id-token: write       # for OIDC
 
 jobs:
   build:
@@ -10,20 +16,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # ○ Install Node + your favourite package manager
       - uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - run: npm ci        # or pnpm install / yarn install
-      - run: npm run build # creates ./dist
+      - run: npm ci
+      - run: npm run build
 
-      # ○ Push the dist folder into a dedicated gh-pages branch
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      # Package the `dist` folder for deployment
+      - uses: actions/upload-pages-artifact@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages          # because user sites read from / (root)
-          publish_dir: ./dist
-          keep_files: false                 # gh-pages only holds build output
-          force_orphan: true                # create a fresh gh-pages branch
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v2

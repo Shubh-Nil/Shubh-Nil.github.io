@@ -1,0 +1,29 @@
+---
+export interface Props { items: any[] }
+const { items = [] } = Astro.props;
+---
+
+<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+  {items.map(({ data }) => (
+    <a
+      href={data.externalUrl}
+      class="group block transition hover:-translate-y-1"
+    >
+      <div class="aspect-square overflow-hidden rounded-lg shadow-md mb-4">
+        <img
+          src={data.thumbnail}
+          alt={data.title}
+          class="w-full h-full object-cover transition-transform group-hover:scale-105"
+          loading="lazy"
+        />
+      </div>
+
+      <h3 class="text-xl font-semibold mb-1 group-hover:text-primary">
+        {data.title}
+      </h3>
+      <p class="text-muted dark:text-slate-400">
+        {data.description}
+      </p>
+    </a>
+  ))}
+</div>

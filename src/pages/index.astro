@@ -1,0 +1,88 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import Content from '~/components/widgets/Content.astro';
+import PublicationsLatest from '~/components/widgets/PublicationsLatest.astro';
+
+const metadata = {
+  title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero>
+    <Fragment slot="title">
+      <span class="text-[2.75rem] sm:text-6xl font-semibold text-[#5b7183] font-sans">
+        Shubhranil B
+      </span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <p class="text-1xl text-[#111111]">
+        Hi, I'm a second-year Master's student in Artificial Intelligence and Data Science at
+        <a href="https://www.iitb.ac.in/"
+          class="text-[#5d5d5d] hover:text-[#1a73e8] font-medium transition-colors duration-200"
+          target="_blank" rel="noopener noreferrer">
+          IIT Bombay
+        </a>. I'm honored to be advised by
+        <a href="https://biplab-banerjee.github.io/"
+          class="text-[#5d5d5d] hover:text-[#1a73e8] font-medium transition-colors duration-200"
+          target="_blank" rel="noopener noreferrer">
+          Professor Biplab Banerjee
+        </a>.
+      </p>    
+    </Fragment>
+  </Hero>
+
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isAfterContent
+    items={[
+      {
+        title: 'High level of customization',
+        description: `Tailor the template effortlessly to match your brand's identity and requirements, making your website distinct and saving you time.`,
+      },
+      {
+        title: 'Multiple layout possibilities',
+        description:
+          'Explore various layout options to find the structure that best presents your content, enhancing user engagement and navigation.',
+      },
+      {
+        title: 'Fully responsive design',
+        description:
+          "Ensure your website's optimal performance on various devices and screen sizes, providing a consistent and enjoyable user experience.",
+      },
+      {
+        title: 'Integration of media',
+        description:
+          'Seamlessly incorporate images, videos, and multimedia elements that enhance your content and engage visitors effectively.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
+      alt: 'Blueprint Image',
+    }}
+  >
+    <Fragment slot="content">Ensure your online presence truly represents you.</Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+
+  <!-- HighlightedPosts Widget ******* -->
+
+  <PublicationsLatest
+    title="Explore my recent publications"
+    information={`Short papers, full papers, and extended abstracts from my research on hyperbolic learning, domain generalization, and more.`}
+  />
+
+</Layout>

@@ -1,0 +1,49 @@
+---
+import Grid from '~/components/publications/Grid.astro';  // new grid (next step)
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Button from '~/components/ui/Button.astro';
+import { getCollection } from 'astro:content';
+import { findLatestPublications } from '~/utils/publications';
+
+export interface Props {
+  title?: string;
+  linkText?: string;
+  linkUrl?: string | URL;
+  information?: string;
+  count?: number;
+  id?: string;
+  isDark?: boolean;
+  classes?: Record<string, unknown>;
+  bg?: any;
+}
+
+const {
+  title = await Astro.slots.render('title'),
+  linkText = 'View all publications',
+  linkUrl = '/publications',                   // make a listing page later if you want
+  information = await Astro.slots.render('information'),
+  count = 4,
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+
+const pubs = await findLatestPublications({ count });
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={classes?.container} bg={bg}>
+  <div class="flex flex-col lg:justify-between lg:flex-row mb-8">
+    {title && (
+      <div class="md:max-w-sm">
+        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl group font-heading mb-2" set:html={title} />
+        <Button variant="link" href={linkUrl}>{linkText} »</Button>
+      </div>
+    )}
+    {information && (
+      <p class="text-muted dark:text-slate-400 lg:text-sm lg:max-w-md" set:html={information} />
+    )}
+  </div>
+
+  <Grid items={pubs} />      {/* uses the new grid */}
+</WidgetWrapper>

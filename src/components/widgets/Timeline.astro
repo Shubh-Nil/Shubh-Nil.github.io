@@ -1,0 +1,42 @@
+---
+const timelineItems = [
+  {
+    date: '2017 - 2022',
+    title: 'Director of AI at Tesla',
+    icon: '/images/tesla-logo.png', // <-- Put your icon in public/images/
+    description:
+      'I was the Director of AI at Tesla, where I led the computer vision team of Tesla Autopilot...',
+  },
+  {
+    date: '2015 - 2017',
+    title: 'Research Scientist at OpenAI',
+    icon: '/images/openai-logo.png', // <-- Put your icon in public/images/
+    description: 'I was a research scientist and a founding member at OpenAI.',
+  },
+  {
+    date: '2011 - 2015',
+    title: 'PhD at Stanford University',
+    icon: '/images/stanford-logo.png', // <-- Put your icon in public/images/
+    description: 'My PhD was focused on convolutional/recurrent neural networks...',
+  },
+];
+---
+
+<ol class="relative border-s border-gray-300 dark:border-gray-600 ml-6">
+  {
+    timelineItems.map((item) => (
+      <li class="mb-10 ms-8">
+        <span class="absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-8 ring-white dark:ring-gray-900 dark:bg-gray-700">
+          <img class="rounded-full shadow-lg" src={item.icon} alt={`${item.title} logo`} />
+        </span>
+        <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+          <div class="items-center justify-between mb-3 sm:flex">
+            <time class="mb-1 text-xs font-normal text-gray-500 sm:order-last sm:mb-0">{item.date}</time>
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{item.title}</h3>
+          </div>
+          <p class="text-base font-normal text-gray-600 dark:text-gray-300">{item.description}</p>
+        </div>
+      </li>
+    ))
+  }
+</ol>

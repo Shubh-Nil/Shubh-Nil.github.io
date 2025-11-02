@@ -1,23 +1,26 @@
 ---
+// Import the Astro <Image> component
+import { Image } from 'astro:assets';
+
+// 1. IMPORT your images from src/assets/images/
+// (Make sure your image filenames match these)
+import iitb from '~/assets/images/iitb.png';
+import iem from '~/assets/images/iem.png';
+
+// 2. UPDATE the array to use the imported variables (not strings)
 const timelineItems = [
   {
-    date: '2017 - 2022',
-    title: 'Director of AI at Tesla',
-    icon: '/images/tesla-logo.png', // <-- Put your icon in public/images/
+    date: '2023 - 2026',
+    title: 'MS Research at IIT Bombay',
+    icon: iitb, 
     description:
       'I was the Director of AI at Tesla, where I led the computer vision team of Tesla Autopilot...',
   },
   {
-    date: '2015 - 2017',
-    title: 'Research Scientist at OpenAI',
-    icon: '/images/openai-logo.png', // <-- Put your icon in public/images/
+    date: '2018 - 2022',
+    title: 'B Tech at IEM Kolkata',
+    icon: iem, 
     description: 'I was a research scientist and a founding member at OpenAI.',
-  },
-  {
-    date: '2011 - 2015',
-    title: 'PhD at Stanford University',
-    icon: '/images/stanford-logo.png', // <-- Put your icon in public/images/
-    description: 'My PhD was focused on convolutional/recurrent neural networks...',
   },
 ];
 ---
@@ -27,7 +30,15 @@ const timelineItems = [
     timelineItems.map((item) => (
       <li class="mb-10 ms-8">
         <span class="absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-8 ring-white dark:ring-gray-900 dark:bg-gray-700">
-          <img class="rounded-full shadow-lg" src={item.icon} alt={`${item.title} logo`} />
+          
+          <Image
+            class="rounded-full shadow-lg"
+            src={item.icon}
+            alt={`${item.title} logo`}
+            width={32}
+            height={32}
+          />
+
         </span>
         <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
           <div class="items-center justify-between mb-3 sm:flex">

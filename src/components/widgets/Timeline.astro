@@ -3,7 +3,6 @@
 import { Image } from 'astro:assets';
 
 // 1. IMPORT your images from src/assets/images/
-// (Make sure your image filenames match these)
 import iitb from '~/assets/images/iitb.png';
 import iem from '~/assets/images/iem.png';
 
@@ -13,30 +12,45 @@ const timelineItems = [
     date: '2023 - 2026',
     title: 'MS Research at IIT Bombay',
     icon: iitb,
-    description: 'I was the Director of AI at Tesla, where I led the computer vision team of Tesla Autopilot...',
+    description:
+      'Working on my thesis under <a href="https://biplab-banerjee.github.io/" target="_blank" class="text-blue-600 hover:underline">Prof. Biplab Banerjee</a> at the <a href="https://www.iitb.ac.in/" target="_blank" class="text-blue-600 hover:underline">IIT Bombay</a>. My research focuses on...',
   },
   {
     date: '2018 - 2022',
     title: 'B Tech at IEM Kolkata',
     icon: iem,
-    description: 'I was a research scientist and a founding member at OpenAI.',
+    description:
+      'Completed my Bachelors in Computer Science, with a focus on machine learning and software development.',
   },
 ];
 ---
 
-<ol class="relative border-s border-gray-300 dark:border-gray-600 ml-6">
+<ol class="relative border-s border-gray-300 dark:border-gray-600 ml-32">
   {
     timelineItems.map((item) => (
-      <li class="mb-10 ms-8">
-        <span class="absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-8 ring-white dark:ring-gray-900 dark:bg-gray-700">
-          <Image class="rounded-full shadow-lg" src={item.icon} alt={`${item.title} logo`} width={32} height={32} />
+      <li class="mb-10 ms-12">
+
+        <time class="absolute -left-32 mt-1 text-base font-normal text-gray-500 dark:text-gray-400">
+          {item.date}
+        </time>
+        
+        <span class="absolute flex items-center justify-center w-3 h-3 bg-gray-300 rounded-full -start-[7px] ring-4 ring-white dark:ring-gray-900 dark:bg-gray-600">
         </span>
-        <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-          <div class="items-center justify-between mb-3 sm:flex">
-            <time class="mb-1 text-xs font-normal text-gray-500 sm:order-last sm:mb-0">{item.date}</time>
+        
+        <div class="flex items-start gap-x-4">
+          
+          <Image
+            class="rounded-full shadow-lg"
+            src={item.icon}
+            alt={`${item.title} logo`}
+            width={40}
+            height={40}
+          />
+
+          <div class="flex-1">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{item.title}</h3>
+            <p class="text-base font-normal text-gray-600 dark:text-gray-300" set:html={item.description} />
           </div>
-          <p class="text-base font-normal text-gray-600 dark:text-gray-300">{item.description}</p>
         </div>
       </li>
     ))

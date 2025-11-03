@@ -26,8 +26,8 @@ const timelineItems = [
     <ol class="relative border-s-2 border-gray-300 dark:border-gray-600 ml-24">
       {
         timelineItems.map((item) => (
-          <li class="mb-10 ms-6">
-            <time class="absolute -left-24 mt-0 text-sm font-normal text-gray-400 dark:text-gray-400">{item.date}</time>
+          <li class="mb-10 ms-3">
+            <time class="absolute -left-24 mt-0 text-sm font-semibold text-gray-400 dark:text-gray-400">{item.date}</time>
 
             <span class="absolute flex items-center justify-center w-2.5 h-2.5 bg-gray-300 rounded-full -start-[6px] ring-4 ring-white dark:ring-gray-900 dark:bg-gray-600" />
 
@@ -35,7 +35,7 @@ const timelineItems = [
               <Image class="" src={item.icon} alt={`${item.title} logo`} width={64} height={64} densities={[1, 2, 3]} />
 
               <div class="flex-1">
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{item.title}</h3>
+                <h3 class="text-lg font-semibold text-gray-750 dark:text-white">{item.title}</h3>
                 <p class="text-base font-normal text-gray-600 dark:text-gray-300" set:html={item.description} />
               </div>
             </div>

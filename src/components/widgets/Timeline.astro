@@ -9,20 +9,22 @@ const timelineItems = [
     title: 'MS Research at IIT Bombay',
     icon: iitb,
     description:
-      'Working on my thesis under <a href="https://biplab-banerjee.github.io/" target="_blank" class="text-blue-600 hover:underline">Prof. Biplab Banerjee</a> at the <a href="https://www.iitb.ac.in/" target="_blank" class="text-blue-600 hover:underline">IIT Bombay</a>. My research focuses on...',
+      `I am specializing in AI and Data Science, with focus on Computer Vision related applications under<br>
+      the guidance of <a href="https://biplab-banerjee.github.io/" target="_blank" class="text-blue-600 hover:underline">Prof. Biplab Banerjee, CSRE</a>. My first work, accepted to <strong class="text-gray-600 dark:text-gray-300">CVPR 2025</strong>, centered on the<br> 
+      intersection of Domain Generalization (DG) and Generalized Category Discovery (GCD).`,
   },
   {
     date: '2018 - 2022',
     title: 'BTech at IEM Kolkata',
     icon: iem,
     description:
-      'Completed my Bachelors in Computer Science, with a focus on machine learning and software development.',
+      `Completed my Bachelors in Electronics and Communication Engineering.`,
   },
 ];
 ---
 
 <section class="py-16 md:py-20">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6">
     <ol class="relative border-s-2 border-gray-300 dark:border-gray-600 ml-24">
       {
         timelineItems.map((item) => (
@@ -37,8 +39,8 @@ const timelineItems = [
               <Image class="" src={item.icon} alt={`${item.title} logo`} width={64} height={64} densities={[1, 2, 3]} />
 
               <div class="flex-1">
-                <h3 class="text-lg font-semibold text-slate-650 dark:text-white">{item.title}</h3>
-                <p class="text-base font-normal text-gray-600 dark:text-gray-300" set:html={item.description} />
+                <h3 class="text-lg font-semibold text-black/70 dark:text-white">{item.title}</h3>
+                <p class="text-base font-normal text-gray-650 dark:text-gray-300" set:html={item.description} />
               </div>
             </div>
           </li>

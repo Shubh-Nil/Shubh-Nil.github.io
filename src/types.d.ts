@@ -10,6 +10,7 @@ export interface Post {
 
   /**  */
   permalink: string;
+  externalUrl?: string;
 
   /**  */
   publishDate: Date;

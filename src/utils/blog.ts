@@ -49,6 +49,7 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
     updateDate: rawUpdateDate,
     title,
     excerpt,
+    externalUrl,
     image,
     tags: rawTags = [],
     category: rawCategory,
@@ -76,7 +77,8 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
   return {
     id: id,
     slug: slug,
-    permalink: await generatePermalink({ id, slug, publishDate, category: category?.slug }),
+    permalink: externalUrl || (await generatePermalink({ id, slug, publishDate, category: category?.slug })),
+    externalUrl,
 
     publishDate: publishDate,
     updateDate: updateDate,
@@ -185,12 +187,14 @@ export const getStaticPathsBlogList = async ({ paginate }: { paginate: PaginateF
 /** */
 export const getStaticPathsBlogPost = async () => {
   if (!isBlogEnabled || !isBlogPostRouteEnabled) return [];
-  return (await fetchPosts()).flatMap((post) => ({
-    params: {
-      blog: post.permalink,
-    },
-    props: { post },
-  }));
+  return (await fetchPosts())
+    .filter((post) => !post.externalUrl)
+    .flatMap((post) => ({
+      params: {
+        blog: post.permalink,
+      },
+      props: { post },
+    }));
 };
 
 /** */

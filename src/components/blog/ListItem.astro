@@ -108,6 +108,13 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
 
     {post.excerpt && <p class="flex-grow text-muted dark:text-slate-400 text-lg">{post.excerpt}</p>}
     {
+      post.externalUrl && (
+        <a href={post.externalUrl} class="mt-3 inline-block hover:underline">
+          Read on Medium ↗
+        </a>
+      )
+    }
+    {
       post.tags && Array.isArray(post.tags) ? (
         <footer class="mt-5">
           <PostTags tags={post.tags} />

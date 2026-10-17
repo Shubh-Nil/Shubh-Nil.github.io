@@ -25,24 +25,43 @@ const metadata = {
         <span class="mt-1 text-xs">Photo coming soon</span>
       </div>
       <div class="max-w-2xl text-center sm:text-left">
-        <h1 id="profile-name" class="text-3xl font-bold tracking-tight text-[#526b7d] sm:text-4xl">Shubhranil B</h1>
-        <p class="mt-4 text-lg leading-relaxed text-slate-700">{metadata.description}</p>
-        <nav aria-label="Profile links" class="mt-5 flex flex-wrap justify-center gap-x-6 gap-y-3 sm:justify-start">
-          <a
-            class="profile-link"
-            href="https://www.linkedin.com/in/shubhranil-b-iitb/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Icon name="tabler:brand-linkedin" class="h-5 w-5" aria-hidden="true" /> LinkedIn
-          </a>
-          <a class="profile-link" href="https://github.com/Shubh-Nil" target="_blank" rel="noopener noreferrer">
-            <Icon name="tabler:brand-github" class="h-5 w-5" aria-hidden="true" /> GitHub
-          </a>
-          <a class="profile-link" href="/documents/Resume_Shubhranil.pdf" download="Resume_Shubhranil.pdf">
-            <Icon name="tabler:download" class="h-5 w-5" aria-hidden="true" /> Résumé
-          </a>
-        </nav>
+        <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 sm:justify-start">
+          <h1 id="profile-name" class="text-[2rem] font-extrabold leading-tight tracking-tight text-[#536d80]">
+            Shubhranil B
+          </h1>
+          <nav aria-label="Profile links" class="flex items-center gap-3">
+            <a
+              class="profile-link"
+              href="https://www.linkedin.com/in/shubhranil-b-iitb/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              title="LinkedIn"
+            >
+              <Icon name="tabler:brand-linkedin" class="h-[18px] w-[18px]" aria-hidden="true" />
+            </a>
+            <a
+              class="profile-link"
+              href="https://github.com/Shubh-Nil"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              title="GitHub"
+            >
+              <Icon name="tabler:brand-github" class="h-[18px] w-[18px]" aria-hidden="true" />
+            </a>
+            <a
+              class="profile-link"
+              href="/documents/Resume_Shubhranil.pdf"
+              download="Resume_Shubhranil.pdf"
+              aria-label="Download résumé"
+              title="Download résumé"
+            >
+              <Icon name="tabler:file-cv" class="h-[18px] w-[18px]" aria-hidden="true" />
+            </a>
+          </nav>
+        </div>
+        <p class="profile-bio mt-3 leading-[1.5] tracking-normal text-[#24292e]">{metadata.description}</p>
       </div>
     </div>
   </section>
@@ -59,20 +78,24 @@ const metadata = {
 </Layout>
 
 <style>
+  .profile-bio {
+    font-size: var(--aw-bio-font-size);
+  }
+
   .profile-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    color: #2563a6;
-    font-size: 0.95rem;
-    font-weight: 500;
+    justify-content: center;
+    min-width: 24px;
+    min-height: 24px;
+    color: var(--aw-color-link);
   }
   .profile-link:hover {
     text-decoration: underline;
     text-underline-offset: 4px;
   }
   .profile-link:focus-visible {
-    outline: 2px solid #2563a6;
+    outline: 2px solid var(--aw-color-link);
     outline-offset: 5px;
     border-radius: 2px;
   }

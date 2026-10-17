@@ -55,6 +55,7 @@ const postCollection = defineCollection({
 
     title: z.string(),
     excerpt: z.string().optional(),
+    externalUrl: z.string().url().optional(),
     image: z.string().optional(),
 
     category: z.string().optional(),
@@ -74,6 +75,12 @@ const publicationsCollection = defineCollection({
     date: z.date(), // for sorting in the widget
     thumbnail: z.string(), // PNG / JPG path
     externalUrl: z.string().url(), // where the card should link
+    authors: z.array(z.object({ name: z.string(), highlight: z.boolean().optional() })),
+    conference: z.string(),
+    conferenceShort: z.string(),
+    year: z.number().int(),
+    arxivUrl: z.string().url().optional(),
+    codeUrl: z.string().url().optional(),
 
     draft: z.boolean().optional(),
 

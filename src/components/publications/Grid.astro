@@ -16,29 +16,73 @@ const { items = [] } = Astro.props as Props;
 <div class="space-y-8">
   {
     items.map(({ data }) => (
-      <a
-        href={data.externalUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group flex flex-col items-start gap-5 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 sm:flex-row sm:items-center sm:gap-7"
-      >
-        <div class="h-36 w-36 shrink-0 overflow-hidden rounded-md border border-slate-200 bg-white sm:h-40 sm:w-40">
+      <article class="flex flex-col items-start gap-5 tracking-normal sm:flex-row sm:gap-6">
+        <a
+          href={data.externalUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="block w-36 shrink-0 sm:w-40"
+          aria-label={`Project page: ${data.title}`}
+        >
           <img
             src={data.thumbnail}
             alt={data.title}
-            class="w-full h-full object-contain"
+            class="block h-auto w-full"
             width={160}
             height={160}
             loading="lazy"
           />
-        </div>
+        </a>
 
-        <div class="max-w-2xl">
-          <h3 class="text-lg font-semibold leading-relaxed text-blue-700 group-hover:underline">{data.title}</h3>
-          <p class="mt-2 text-base text-muted dark:text-slate-400">{data.description}</p>
-          <span class="mt-3 inline-block text-sm font-medium text-blue-700">Project page ↗</span>
+        <div class="publication-text max-w-2xl">
+          <h3 class="font-bold leading-snug">
+            <a href={data.externalUrl} target="_blank" rel="noopener noreferrer" class="hover:underline">
+              {data.title}
+            </a>
+          </h3>
+          <p class="mt-2 leading-snug text-[#666666]">
+            {data.authors.map((author, index) => (
+              <>
+                {index > 0 && ', '}
+                {author.highlight ? <strong class="font-bold text-[#333333]">{author.name}</strong> : author.name}
+              </>
+            ))}
+          </p>
+          <p class="mt-2 leading-snug text-[#24292e]">
+            <em>
+              {data.conference} ({data.conferenceShort})
+            </em>
+            , {data.year}
+          </p>
+          <nav aria-label={`Resources for ${data.title}`} class="mt-1 flex flex-wrap gap-x-1.5 leading-snug">
+            <a href={data.externalUrl} target="_blank" rel="noopener noreferrer" class="hover:underline">
+              project page
+            </a>
+            {data.arxivUrl && (
+              <>
+                <span aria-hidden="true">/</span>
+                <a href={data.arxivUrl} target="_blank" rel="noopener noreferrer" class="hover:underline">
+                  arXiv
+                </a>
+              </>
+            )}
+            {data.codeUrl && (
+              <>
+                <span aria-hidden="true">/</span>
+                <a href={data.codeUrl} target="_blank" rel="noopener noreferrer" class="hover:underline">
+                  code
+                </a>
+              </>
+            )}
+          </nav>
         </div>
-      </a>
+      </article>
     ))
   }
 </div>
+
+<style>
+  .publication-text {
+    font-size: var(--aw-publication-font-size);
+  }
+</style>

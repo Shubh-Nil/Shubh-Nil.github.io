@@ -1,91 +1,79 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
-import Hero from '~/components/widgets/Hero.astro';
-import Content from '~/components/widgets/Content.astro';
+import { Icon } from 'astro-icon/components';
 import PublicationsLatest from '~/components/widgets/PublicationsLatest.astro';
 import Timeline from '~/components/widgets/Timeline.astro';
 
 const metadata = {
-  title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
+  title: 'Shubhranil B',
+  description:
+    'I build learning systems that generalize beyond their training data—across domains, categories, languages, and real-world constraints.',
   ignoreTitleTemplate: true,
 };
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Widget ******************* -->
-
-  <Hero>
-    <Fragment slot="title">
-      <span class="text-[2.75rem] sm:text-6xl font-semibold text-[#5b7183] font-sans"> Shubhranil B </span>
-    </Fragment>
-
-    <Fragment slot="subtitle">
-      <p class="text-1xl text-[#111111]">
-        Hi, I'm a Master's student in Artificial Intelligence and Data Science at
-        <a
-          href="https://www.iitb.ac.in/"
-          class="text-[#5d5d5d] hover:text-[#1a73e8] font-medium transition-colors duration-200"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          IIT Bombay
-        </a>. I'm honored to be advised by
-        <a
-          href="https://biplab-banerjee.github.io/"
-          class="text-[#5d5d5d] hover:text-[#1a73e8] font-medium transition-colors duration-200"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Professor Biplab Banerjee
-        </a>.
-      </p>
-    </Fragment>
-  </Hero>
-
-  <!-- Content Widget **************** -->
-
-  <Content
-    isAfterContent
-    items={[
-      {
-        title: 'High level of customization',
-        description: `Tailor the template effortlessly to match your brand's identity and requirements, making your website distinct and saving you time.`,
-      },
-      {
-        title: 'Multiple layout possibilities',
-        description:
-          'Explore various layout options to find the structure that best presents your content, enhancing user engagement and navigation.',
-      },
-      {
-        title: 'Fully responsive design',
-        description:
-          "Ensure your website's optimal performance on various devices and screen sizes, providing a consistent and enjoyable user experience.",
-      },
-      {
-        title: 'Integration of media',
-        description:
-          'Seamlessly incorporate images, videos, and multimedia elements that enhance your content and engage visitors effectively.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
-      alt: 'Blueprint Image',
-    }}
-  >
-    <Fragment slot="content">Ensure your online presence truly represents you.</Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
+  <section aria-labelledby="profile-name" class="bg-[#f3f8fc]">
+    <div class="mx-auto flex max-w-5xl flex-col items-center gap-7 px-6 py-10 sm:flex-row sm:gap-10 sm:py-14">
+      <div
+        role="img"
+        aria-label="Profile photo placeholder for Shubhranil B"
+        class="flex h-36 w-36 shrink-0 flex-col items-center justify-center rounded-full border-[5px] border-white bg-[#e2ebf1] text-[#5b7183] sm:h-44 sm:w-44"
+      >
+        <Icon name="tabler:user" class="h-16 w-16" aria-hidden="true" />
+        <span class="mt-1 text-xs">Photo coming soon</span>
+      </div>
+      <div class="max-w-2xl text-center sm:text-left">
+        <h1 id="profile-name" class="text-3xl font-bold tracking-tight text-[#526b7d] sm:text-4xl">Shubhranil B</h1>
+        <p class="mt-4 text-lg leading-relaxed text-slate-700">{metadata.description}</p>
+        <nav aria-label="Profile links" class="mt-5 flex flex-wrap justify-center gap-x-6 gap-y-3 sm:justify-start">
+          <a
+            class="profile-link"
+            href="https://www.linkedin.com/in/shubhranil-b-iitb/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon name="tabler:brand-linkedin" class="h-5 w-5" aria-hidden="true" /> LinkedIn
+          </a>
+          <a class="profile-link" href="https://github.com/Shubh-Nil" target="_blank" rel="noopener noreferrer">
+            <Icon name="tabler:brand-github" class="h-5 w-5" aria-hidden="true" /> GitHub
+          </a>
+          <a class="profile-link" href="/documents/Resume_Shubhranil.pdf" download="Resume_Shubhranil.pdf">
+            <Icon name="tabler:download" class="h-5 w-5" aria-hidden="true" /> Résumé
+          </a>
+        </nav>
+      </div>
+    </div>
+  </section>
 
   <Timeline />
 
   <!-- HighlightedPosts Widget ******* -->
 
   <PublicationsLatest
-    title="Explore my recent publications"
-    information={`Short papers, full papers, and extended abstracts from my research on hyperbolic learning, domain generalization, and more.`}
+    id="publications"
+    title="Recent publications"
+    classes={{ container: 'max-w-5xl pt-0 md:pt-0 lg:pt-0' }}
   />
 </Layout>
+
+<style>
+  .profile-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #2563a6;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+  .profile-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .profile-link:focus-visible {
+    outline: 2px solid #2563a6;
+    outline-offset: 5px;
+    border-radius: 2px;
+  }
+</style>

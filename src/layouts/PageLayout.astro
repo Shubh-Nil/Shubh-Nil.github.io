@@ -1,7 +1,6 @@
 ---
 import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/widgets/Header.astro';
-import FooterDark from '~/components/widgets/FooterDark.astro';
 
 import { headerData } from '~/navigation';
 
@@ -21,7 +20,5 @@ const { metadata } = Astro.props;
   <main>
     <slot />
   </main>
-  <slot name="footer">
-    <FooterDark />
-  </slot>
+  <slot name="footer" />
 </Layout>

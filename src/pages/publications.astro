@@ -1,1 +1,16 @@
-<!-- Nothing will be shown now -->
+---
+import { getCollection } from 'astro:content';
+import Layout from '~/layouts/PageLayout.astro';
+import Grid from '~/components/publications/Grid.astro';
+
+const publications = (await getCollection('publications', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<Layout metadata={{ title: 'Publications — Shubhranil B', ignoreTitleTemplate: true }}>
+  <section class="mx-auto max-w-5xl px-6 py-12 sm:py-16">
+    <h1 class="mb-10 text-3xl font-semibold tracking-tight text-[#526b7d]">Publications</h1>
+    <Grid items={publications} />
+  </section>
+</Layout>

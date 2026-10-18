@@ -47,6 +47,9 @@ if (
   isUnpicCompatible(_image)
 ) {
   image = await getImagesOptimized(_image, props, unpicOptimizer);
+} else if (typeof _image === 'string' && _image.startsWith('/')) {
+  // Files in public/ are served directly, without Astro's source-image optimizer.
+  image = await getImagesOptimized(_image, props);
 } else if (_image) {
   image = await getImagesOptimized(_image, props, astroAssetsOptimizer);
 }
